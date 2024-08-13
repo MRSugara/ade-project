@@ -6,24 +6,27 @@
     </x-slot>
 
     <div class="py-12">
+
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
              <a href={{ route('example.create')}}  class="btn btn-primary">Create</a>
             <table class="table">
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">Name</th>
+      <th scope="col">Descirption</th>
+      <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
+    @foreach ($example as $p )
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
+      <th scope="row">{{ $loop->iteration }}</th>
+      <td>{{ $p->name }}</td>
+      <td>{{ $p->description }}</td>
       <td>@mdo</td>
     </tr>
+    @endforeach
   </tbody>
 </table>
         </div>
