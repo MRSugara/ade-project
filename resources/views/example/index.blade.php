@@ -24,7 +24,14 @@
       <th scope="row">{{ $loop->iteration }}</th>
       <td>{{ $p->name }}</td>
       <td>{{ $p->description }}</td>
-      <td>@mdo</td>
+      <td>
+        <a href="{{ route('example.edit', $p->id) }}" class="btn btn-primary">Edit</a>
+        <form action="{{ route('example.destroy', $p->id) }}" method="post" class="d-inline">
+          @csrf
+          @method('delete')
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+      </td>
     </tr>
     @endforeach
   </tbody>
