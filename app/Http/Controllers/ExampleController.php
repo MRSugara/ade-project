@@ -29,7 +29,11 @@ class ExampleController extends Controller
      */
     public function store(Request $request)
     {
-    $validate = $request->validate(['name' => 'required','description'=>'required']);
+    $validate = $request->validate(['name' => 'required','description'=>'required','image'=>'required']);
+    $imageName = time().'.'.$request->image->extension();
+    $request->image->move(public_path('images'), $imageName);
+    $validate['image'] = $imageName;
+    // dd($validate);
     Example::create($validate);
     return  redirect()->route('example.index');
     }
@@ -55,7 +59,18 @@ class ExampleController extends Controller
      */
     public function update(Request $request, Example $example)
     {
-        $validate = $request->validate(['name'=>'required','description'=>'required']);
+        $validate = $request->validate(['name'=>'required','description'=>'required','image'=>'image']);
+        if($validate['image'] == null){
+            $validate['image'] = $example->image;
+        } else {
+            // delete old image
+            $oldImage = public_path('images/'.$example->image);
+            unlink($oldImage);
+            $ImageName = time() . '.' . $validate['image']->extension();
+            $request->image->move(public_path('images'), $ImageName);
+            $validate['image'] = $ImageName;
+        }
+
         $example->update($validate);
         return redirect()->route('example.index');
     }
@@ -65,6 +80,9 @@ class ExampleController extends Controller
      */
     public function destroy(Example $example)
     {
+        //delete image
+        $oldImage = public_path('images/'.$example->image);
+        unlink($oldImage);
         $example->delete();
         return redirect()->route('example.index');
     }
