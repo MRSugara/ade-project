@@ -15,6 +15,7 @@
       <th scope="col">#</th>
       <th scope="col">Name</th>
       <th scope="col">Descirption</th>
+      <th scope="col">Category</th>
       <th scope="col">Image</th>
       <th scope="col">Action</th>
     </tr>
@@ -25,6 +26,7 @@
       <th scope="row">{{ $loop->iteration }}</th>
       <td>{{ $p->name }}</td>
       <td>{{ $p->description }}</td>
+      <td>{{ $p->category->name }}</td>
       <td>
         <img src="{{ asset('images/'.$p->image) }}" alt="" style="width: 100px">
     </td>

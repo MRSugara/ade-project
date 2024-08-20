@@ -12,12 +12,17 @@
                 @method('put')
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="name" name="name" value="{{ $example->name }}">
+                    <input type="name" class="form-control" id="name" name="name" value="{{ $example->name }}">
                 </div>
                 <div class="mb-3">
                     <label for="description" class="form-label">Description</label>
                     <input type="text" class="form-control" id="description"name="description" value="{{ $example->description }}">
                 </div>
+                <select class="form-select mb-3" aria-label="Default select example" name="category_id">
+                    @foreach ($category as $c)
+                        <option value="{{ $c->name }}" {{ $c->name == $example->category->name ? 'selected' : '' }} >{{ $c->name }}</option>
+                    @endforeach
+                </select>
                 <div class="input-group mb-3 bg-white">
                     <img src="{{ asset('images/'.$example->image) }}" alt="" style="width: 100px">
                     <input type="file" class="form-control self-center mx-3" id="inputGroupFile02" name="image" value="{{ $example->image }}">

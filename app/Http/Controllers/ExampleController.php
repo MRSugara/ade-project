@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Example;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class ExampleController extends Controller
@@ -12,7 +13,8 @@ class ExampleController extends Controller
      */
     public function index()
     {
-    $example = Example::all();
+    $example = Example::with('category')->get();
+    // dd($example);
     return view('example.index', compact('example'));
     }
 
@@ -21,7 +23,8 @@ class ExampleController extends Controller
      */
     public function create()
     {
-    return view('example.create');
+        $category = Category::all();
+        return view('example.create',compact('category'));
     }
 
     /**
@@ -29,13 +32,18 @@ class ExampleController extends Controller
      */
     public function store(Request $request)
     {
-    $validate = $request->validate(['name' => 'required','description'=>'required','image'=>'required']);
-    $imageName = time().'.'.$request->image->extension();
-    $request->image->move(public_path('images'), $imageName);
-    $validate['image'] = $imageName;
-    // dd($validate);
-    Example::create($validate);
-    return  redirect()->route('example.index');
+        // lek semisal ngecreate baru category di dalam example
+        // $category = $request['category_id'];
+        // Category::create(['name' => $category]);
+
+        $validate = $request->validate(['name' => 'required','description'=>'required','image'=>'required','category_id'=>'required']);
+        // dd($validate);
+        $imageName = time().'.'.$request->image->extension();
+        $request->image->move(public_path('images'), $imageName);
+        $validate['image'] = $imageName;
+        // dd($validate);
+        Example::create($validate);
+        return  redirect()->route('example.index');
     }
 
     /**
@@ -51,7 +59,9 @@ class ExampleController extends Controller
      */
     public function edit(Example $example)
     {
-        return view('example.edit',compact('example'));
+        $example->with('category')->get();
+        $category = Category::all();
+        return view('example.edit',compact('example','category'));
     }
 
     /**
@@ -59,7 +69,7 @@ class ExampleController extends Controller
      */
     public function update(Request $request, Example $example)
     {
-        $validate = $request->validate(['name'=>'required','description'=>'required','image'=>'image']);
+        $validate = $request->validate(['name'=>'required','description'=>'required','image'=>'image','category'=>'required']);
         if($validate['image'] == null){
             $validate['image'] = $example->image;
         } else {

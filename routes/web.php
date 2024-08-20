@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\ExampleController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ExampleController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('products', ProductController::class)->names('products');
     Route::resource('example',ExampleController::class)->names('example');
+    Route::resource('category',CategoryController::class)->names('category');
 });
 
 require __DIR__.'/auth.php';

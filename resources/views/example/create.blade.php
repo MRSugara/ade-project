@@ -17,10 +17,18 @@
                     <label for="description" class="form-label">Description</label>
                     <input type="text" class="form-control" id="description"name="description">
                 </div>
+
+                {{-- create select option for category relationship --}}
+                <select class="form-select" aria-label="Default select example" name="category_id">
+                    @foreach ($category as $c)
+                        <option value="{{ $c->name }}">{{ $c->name }}</option>
+                    @endforeach
+                </select>
                 <div class="input-group mb-3">
                      <input type="file" class="form-control" id="inputGroupFile02" name="image">
                     <label class="input-group-text" for="inputGroupFile02">Upload</label>
                 </div>
+
 
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
