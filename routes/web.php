@@ -5,6 +5,7 @@ use App\Http\Controllers\ExampleController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\KatalogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('products', ProductController::class)->names('products');
     Route::resource('example',ExampleController::class)->names('example');
     Route::resource('category',CategoryController::class)->names('category');
+    Route::resource('katalog',KatalogController::class)->names('katalog');
 });
 
 require __DIR__.'/auth.php';
