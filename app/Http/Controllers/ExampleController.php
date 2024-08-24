@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Example;
 use Illuminate\Http\Request;
+use Illuminate\Support\Number;
 
 class ExampleController extends Controller
 {
@@ -13,6 +14,7 @@ class ExampleController extends Controller
     public function index()
     {
     $example = Example::all();
+    // $example->price = Number::format($example[0]->price);
     return view('example.index', compact('example'));
     }
 
@@ -29,7 +31,11 @@ class ExampleController extends Controller
      */
     public function store(Request $request)
     {
-    $validate = $request->validate(['name' => 'required','description'=>'required', 'harga'=>'required']);
+    $validate = $request->validate([
+        'name' => 'required',
+        'description'=>'required',
+        'price'=>'required'
+    ]);
     Example::create($validate);
     return  redirect()->route('example.index');
     }
@@ -55,7 +61,11 @@ class ExampleController extends Controller
      */
     public function update(Request $request, Example $example)
     {
-        $validate = $request->validate(['name'=>'required','description'=>'required','harga'=>'required']);
+        $validate = $request->validate([
+            'name'=>'required',
+            'description'=>'required',
+            'price'=>'required'
+        ]);
         $example->update($validate);
         return redirect()->route('example.index');
     }

@@ -18,8 +18,8 @@
                     <input type="text" class="form-control" id="description"name="description">
                 </div>
                 <div class="mb-3">
-                    <label for="harga" class="form-label">Harga</label>
-                    <input type="text" class="form-control" name="harga">
+                    <label for="price" class="form-label">Price</label>
+                    <input type="text" class="form-control" id="price" name="price">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

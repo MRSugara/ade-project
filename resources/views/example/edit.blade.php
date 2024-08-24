@@ -18,8 +18,8 @@
                     <input type="text" class="form-control" name="description" value="{{ $example->description }}" id="description">
                 </div>
                 <div class="mb-3">
-                    <label for="harga" class="form-label">Harga</label>
-                    <input type="text" class="form-control" name="harga" value="{{ $example->harga }}" id="harga">
+                    <label for="price" class="form-label">Price</label>
+                    <input type="text" class="form-control" name="price" value="{{ $example->price }}" id="price">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

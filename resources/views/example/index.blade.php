@@ -17,7 +17,7 @@
       <th scope="col">#</th>
       <th scope="col">Name</th>
       <th scope="col">Descirption</th>
-      <th scope="col">Harga</th>
+      <th scope="col">Price</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
@@ -27,7 +27,7 @@
       <th scope="row">{{ $loop->iteration }}</th>
       <td>{{ $p->name }}</td>
       <td>{{ $p->description }}</td>
-      <td>{{ $p->harga }}</td>
+      <td>Rp. {{ Illuminate\Support\Number::format($p->price) }}</td>
       <td>
           <a href="{{ route('example.edit',$p->id) }}"class="btn btn-primary">Edit</a>
           <form action="{{ route('example.destroy',$p->id) }}"method="post" class="d-inline" >
@@ -40,6 +40,7 @@
     @endforeach
   </tbody>
 </table>
+
         </div>
     </div>
 </x-app-layout>
