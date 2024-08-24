@@ -29,7 +29,7 @@ class ExampleController extends Controller
      */
     public function store(Request $request)
     {
-    $validate = $request->validate(['name' => 'required','description'=>'required']);
+    $validate = $request->validate(['name' => 'required','description'=>'required', 'harga'=>'required']);
     Example::create($validate);
     return  redirect()->route('example.index');
     }
@@ -55,7 +55,7 @@ class ExampleController extends Controller
      */
     public function update(Request $request, Example $example)
     {
-        $validate = $request->validate(['name'=>'required','description'=>'required']);
+        $validate = $request->validate(['name'=>'required','description'=>'required','harga'=>'required']);
         $example->update($validate);
         return redirect()->route('example.index');
     }

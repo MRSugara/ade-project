@@ -17,7 +17,10 @@
                     <label for="description" class="form-label">Description</label>
                     <input type="text" class="form-control" id="description"name="description">
                 </div>
-
+                <div class="mb-3">
+                    <label for="harga" class="form-label">Harga</label>
+                    <input type="text" class="form-control" name="harga">
+                </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
