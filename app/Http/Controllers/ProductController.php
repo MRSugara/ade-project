@@ -4,16 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Charts\MonthlyUsersChart;
 
 class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(MonthlyUsersChart $chart)
     {
+        $data['chart'] = $chart->build();
         $products = Product::all();
-        return view('product.index', compact('products'));
+        return view('product.index', compact('products', 'data'));
     }
 
     /**

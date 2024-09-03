@@ -39,6 +39,14 @@
 
                 </tbody>
             </table>
+            <div class="container px-4 mx-auto">
+                <div class="p-6 m-20 bg-white rounded shadow">
+                    {!! $data['chart']->container() !!}
+                </div>
+            </div>
+            <script src="{{ $data['chart']->cdn() }}"></script>
+
+            {{ $data['chart']->script() }}
         </div>
     </div>
 </x-app-layout>
